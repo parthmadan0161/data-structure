@@ -14,6 +14,23 @@ void traversal(node *head)
         head=head->next;
     }
 }
+void insertionfrom_beg(node **head)
+{
+    node *ptr;
+      ptr=(node*)malloc(sizeof(node));
+        scanf("%d",&ptr->value);
+        if(*head==NULL)
+        {
+            *head=ptr;
+            ptr->next=NULL;
+        }
+        else
+        {
+            ptr->next=*head;
+            *head=ptr;
+        }
+    
+}
 void main()
 {
     int n=1;
@@ -21,18 +38,7 @@ void main()
     node *head=NULL;
     while(n)
     {
-        ptr=(node*)malloc(sizeof(node));
-        scanf("%d",&ptr->value);
-        if(head==NULL)
-        {
-            head=ptr;
-            ptr->next=NULL;
-        }
-        else
-        {
-            ptr->next=head;
-            head=ptr;
-        }
+       insertionfrom_beg(&head);
         printf("do you want to continue 1. yes and 0 for no");
         scanf("%d",&n);
     }
