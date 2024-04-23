@@ -1,0 +1,51 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct node
+{
+ int value;
+ struct node *next;
+}node;
+void traversal(node *head)
+{
+    while(head!=NULL)
+    {
+        printf("%d",head->value);
+        head=head->next;
+    }
+}
+void insertionfrom_end(node **head)
+{
+    node *temp=*head;
+    node *ptr;
+      ptr=(node*)malloc(sizeof(node));
+        scanf("%d",&ptr->value);
+        if(*head==NULL)
+        {
+            *head=ptr;
+            ptr->next=NULL;
+        }
+        else
+        {
+            temp=*head;
+            while(temp->next!=NULL)
+            temp=temp->next;
+            temp->next=ptr;
+            ptr->next=NULL;
+        }
+    
+}
+void main()
+{
+    int n=1;
+    node *ptr;
+    node *head=NULL;
+    while(n)
+    {
+       insertionfrom_end(&head);
+        printf("do you want to continue 1. yes and 0 for no");
+        scanf("%d",&n);
+    }
+    traversal(head);
+
+}
