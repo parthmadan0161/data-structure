@@ -1,0 +1,144 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct node
+{
+ int value;
+ struct node *next;
+}node;
+void deletionfrom_end(node **head)
+{
+    node *ptr,*loc;
+    ptr=*head;
+    while(ptr->next!=NULL)
+    {
+        loc=ptr;
+    ptr=ptr->next;
+    }
+    loc->next=NULL;
+    free(ptr);
+}
+void deletionfrom_beg(node **head)
+{
+   node *loc;
+   loc=*head;
+   (*head)=(*head)->next;
+   free(loc);
+}
+void traversal(node *head)
+{
+    while(head!=NULL)
+    {
+        printf("%d ",head->value);
+        head=head->next;
+    }
+}
+void insertionfrom_beg(node **head)
+{
+    node *ptr;
+      ptr=(node*)malloc(sizeof(node));
+        scanf("%d",&ptr->value);
+        if(*head==NULL)
+        {
+            *head=ptr;
+            ptr->next=NULL;
+        }
+        else
+        {
+            ptr->next=*head;
+            *head=ptr;
+        }
+}
+void insertionfrom_end(node **head)
+{
+    node *temp=*head;
+    node *ptr;
+      ptr=(node*)malloc(sizeof(node));
+        scanf("%d",&ptr->value);
+        if(*head==NULL)
+        {
+            *head=ptr;
+            ptr->next=NULL;
+        }
+        else
+        {
+            temp=*head;
+            while(temp->next!=NULL)
+            temp=temp->next;
+            temp->next=ptr;
+            ptr->next=NULL;
+        }
+    
+}
+void main()
+{
+    int c,a=1;
+    int n=1;
+    node *ptr;
+    node *head=NULL;
+    while(a)
+    {
+    printf("enter the choice 1:inseartion from begining\n 2: inseartion from end\n 3: delete from beg \n 4:delete from end\n");
+    scanf("%d",&c);
+    switch (c)
+    {
+        case 1:
+        {
+        printf("enter the nodes");
+        while(n)
+        {
+          insertionfrom_beg(&head);
+          printf("do you want to continue 1. yes and 0 for no");
+          scanf("%d",&n);
+        }
+        traversal(head);
+        printf("do you want to continue");
+        scanf("%d",&a);
+        break;
+        }
+        case 2:
+        printf("enter the nodes");
+        {
+        while(n)
+        {
+          insertionfrom_end(&head);
+          printf("do you want to continue 1. yes and 0 for no");
+          scanf("%d",&n);
+        }
+        traversal(head);
+        printf("do you want to continue");
+        scanf("%d",&a);
+        break;
+        }
+        case 3:
+        {
+        while(n)
+        {
+        deletionfrom_beg(&head);
+        traversal(head);
+        printf("do you want to continue 1. yes and 0 for no");
+        scanf("%d",&n);
+        }
+        traversal(head);
+        printf("do you want to continue");
+        scanf("%d",&a);
+        break;
+        }
+        case 4:
+        {
+        while(n)
+        {
+        deletionfrom_end(&head);
+        printf("do you want to continue 1. yes and 0 for no");
+        scanf("%d",&n);
+        }
+        traversal(head);
+        printf("do you want to continue");
+        scanf("%d",&a);
+        break;
+        }
+        default:
+        printf("no choice");
+    }
+    }
+}
